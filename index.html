@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internship Board</title>
+  <meta name="description" content="Browse and filter internship listings by domain, work mode and skills.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to internship listings</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Internship Board</h1>
+      <p class="tagline">Find an internship that fits your skills. Search, filter and apply.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section aria-labelledby="filters-heading" class="filters">
+      <h2 id="filters-heading" class="visually-hidden">Search and filters</h2>
+
+      <form id="filter-form" role="search" novalidate>
+        <div class="field field--search">
+          <label for="search">Search by title, skill or location</label>
+          <input id="search" name="search" type="search" placeholder="e.g. SQL, Pune, Frontend" autocomplete="off">
+          <p id="search-hint" class="hint">Tip: press <kbd>/</kbd> to jump to search, <kbd>Esc</kbd> to clear.</p>
+        </div>
+
+        <div class="field">
+          <label for="mode">Work mode</label>
+          <select id="mode" name="mode">
+            <option value="">All modes</option>
+          </select>
+        </div>
+
+        <fieldset class="field field--domains">
+          <legend>Domain</legend>
+          <div id="domain-chips" class="chips" role="group" aria-label="Filter by domain"></div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="reset" id="reset" class="btn btn--ghost">Reset filters</button>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="results-heading">
+      <h2 id="results-heading" class="results-heading">Listings</h2>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <div id="results" tabindex="-1">
+        <ul id="card-list" class="card-grid" aria-label="Internship listings"></ul>
+
+        <div id="empty-state" class="state" hidden>
+          <h3>No internships match your filters</h3>
+          <p>Try a different keyword or clear a filter.</p>
+          <button type="button" id="empty-reset" class="btn">Clear all filters</button>
+        </div>
+
+        <div id="error-state" class="state state--error" role="alert" hidden>
+          <h3>We couldn't load the internships</h3>
+          <p id="error-message">Something went wrong while fetching the data.</p>
+          <button type="button" id="retry" class="btn">Try again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>Internship Board · Milestone 2 · built with plain HTML, CSS and JavaScript.</p></div>
+  </footer>
+
+  <dialog id="details-dialog" aria-labelledby="dlg-title">
+    <div class="dlg-body">
+      <p id="dlg-domain" class="domain"></p>
+      <h2 id="dlg-title"></h2>
+      <dl id="dlg-info" class="dlg-info"></dl>
+      <h3 class="dlg-sub">Skills needed</h3>
+      <ul id="dlg-skills" class="skills"></ul>
+      <div class="dlg-actions">
+        <button type="button" id="dlg-close" class="btn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="data/internships.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
